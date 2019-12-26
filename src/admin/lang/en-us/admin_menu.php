@@ -127,7 +127,7 @@ return [
     'ADMIN_RBAC_ROLEEDIT'                => '编辑角色',
     'ADMIN_SLIDE_NAME'                   => '分类名称',
     'CATEGORY_KEY'                       => '分类标识',
-    'DESCRIPTION'                        => '描述',
+    'DESCRIPTION'                        => 'Description',
     'ADMIN_SLIDE_ADD'                    => '添加幻灯片',
     'ADMIN_SLIDE_DELETE'                 => '删除幻灯片',
     'ADMIN_SLIDE_EDIT'                   => '编辑幻灯片',
