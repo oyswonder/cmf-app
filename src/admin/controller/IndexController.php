@@ -11,6 +11,7 @@
 namespace app\admin\controller;
 
 use cmf\controller\AdminBaseController;
+use dir\Dir;
 use think\Db;
 use app\admin\model\AdminMenuModel;
 
@@ -55,6 +56,10 @@ class IndexController extends AdminBaseController
         $result = Db::name('AdminMenu')->order(["app" => "ASC", "controller" => "ASC", "action" => "ASC"])->select();
         $menusTmp = array();
         foreach ($result as $item){
+            //菜单语言转换
+            $langIndex = strtoupper($item['app'].'_'.$item['controller'].'_'.$item['action']);
+            $itemName = lang($langIndex);
+            $itemName != $langIndex && $item['name'] = $itemName ;
             //去掉/ _ 全部小写。作为索引。
             $indexTmp = $item['app'].$item['controller'].$item['action'];
             $indexTmp = preg_replace("/[\\/|_]/","",$indexTmp);

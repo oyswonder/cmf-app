@@ -37,7 +37,7 @@ class MenuLogic
 
         $newMenus = [];
         if ($app == 'admin') {
-            $filePatten         = Env::get('root_path') . "vendor/thinkcmf/cmf-app/src/{$app}/controller/*Controller.php";
+            $filePatten         = Env::get('root_path') . "vendor/".CMF_VENDOR."/cmf-app/src/{$app}/controller/*Controller.php";
             $coreAppControllers = cmf_scan_dir($filePatten);
 
             $filePatten  = APP_PATH . $app . '/controller/*Controller.php';
@@ -45,7 +45,7 @@ class MenuLogic
 
             $controllers = array_merge($coreAppControllers, $controllers);
         } else if ($app == 'user') {
-            $filePatten         = Env::get('root_path') . "vendor/thinkcmf/cmf-app/src/{$app}/controller/Admin*Controller.php";
+            $filePatten         = Env::get('root_path') . "vendor/".CMF_VENDOR."/cmf-app/src/{$app}/controller/Admin*Controller.php";
             $coreAppControllers = cmf_scan_dir($filePatten);
 
             $filePatten  = APP_PATH . $app . '/controller/Admin*Controller.php';

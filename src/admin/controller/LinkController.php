@@ -15,7 +15,13 @@ use app\admin\model\LinkModel;
 
 class LinkController extends AdminBaseController
 {
-    protected $targets = ["_blank" => "新标签页打开", "_self" => "本窗口打开"];
+    protected function getTargets()
+    {
+        return [
+            '_blank' => lang('_BLANK'),
+            '_self' => lang('_SELF'),
+        ];
+    }
 
     /**
      * 友情链接管理
@@ -64,7 +70,7 @@ class LinkController extends AdminBaseController
      */
     public function add()
     {
-        $this->assign('targets', $this->targets);
+        $this->assign('targets', $this->getTargets());
         return $this->fetch();
     }
 
@@ -114,7 +120,7 @@ class LinkController extends AdminBaseController
         $id        = $this->request->param('id', 0, 'intval');
         $linkModel = new LinkModel();
         $link      = $linkModel->get($id);
-        $this->assign('targets', $this->targets);
+        $this->assign('targets', $this->getTargets());
         $this->assign('link', $link);
         return $this->fetch();
     }

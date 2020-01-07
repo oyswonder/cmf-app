@@ -51,10 +51,10 @@ class NavMenuController extends AdminBaseController
 
         $array = [];
         foreach ($arrResult as $r) {
-            $r['str_manage'] = '<a class="btn btn-xs btn-primary" href="' . url("NavMenu/add", ["parent_id" => $r['id'], "nav_id" => $r['nav_id']]) . '">添加子菜单</a>
-            <a class="btn btn-xs btn-primary" href="' . url("NavMenu/edit", ["id" => $r['id'], "parent_id" => $r['parent_id'], "nav_id" => $r['nav_id']]) . '">编辑</a> 
-            <a class="btn btn-xs btn-danger js-ajax-delete" href="' . url("NavMenu/delete", ["id" => $r['id'], 'nav_id' => $r['nav_id']]) . '">删除</a> ';
-            $r['status']     = $r['status'] ? "显示" : "隐藏";
+            $r['str_manage'] = '<a class="btn btn-xs btn-primary" href="' . url("NavMenu/add", ["parent_id" => $r['id'], "nav_id" => $r['nav_id']]) . '">'.lang('ADD_SUB_MENU').'</a>
+            <a class="btn btn-xs btn-primary" href="' . url("NavMenu/edit", ["id" => $r['id'], "parent_id" => $r['parent_id'], "nav_id" => $r['nav_id']]) . '">'.lang('EDIT').'</a> 
+            <a class="btn btn-xs btn-danger js-ajax-delete" href="' . url("NavMenu/delete", ["id" => $r['id'], 'nav_id' => $r['nav_id']]) . '">'.lang('DELETE').'</a> ';
+            $r['status']     = $r['status'] ? lang('DISPLAY') : lang('HIDDEN');
             $array[]         = $r;
         }
 
@@ -102,10 +102,10 @@ class NavMenuController extends AdminBaseController
         $array      = [];
 
         foreach ($arrResult as $r) {
-            $r['str_manage'] = '<a href="' . url("NavMenu/add", ["parent_id" => $r['id']]) . '">添加子菜单</a> | <a href="'
-                . url("NavMenu/edit", ["id" => $r['id']]) . '">编辑</a> | <a class="J_ajax_del" href="'
-                . url("NavMenu/delete", ["id" => $r['id']]) . '">删除</a> ';
-            $r['status']     = $r['status'] ? "显示" : "隐藏";
+            $r['str_manage'] = '<a href="' . url("NavMenu/add", ["parent_id" => $r['id']]) . '">'.lang('ADD_SUB_MENU').'</a> | <a href="'
+                . url("NavMenu/edit", ["id" => $r['id']]) . '">'.lang('EDIT').'</a> | <a class="J_ajax_del" href="'
+                . url("NavMenu/delete", ["id" => $r['id']]) . '">'.lang('DELETE').'</a> ';
+            $r['status']     = $r['status'] ? lang('DISPLAY') : lang('HIDDEN');
             $r['selected']   = $r['id'] == $intParentId ? "selected" : "";
             $array[]         = $r;
         }
@@ -184,10 +184,10 @@ class NavMenuController extends AdminBaseController
         $tree->nbsp = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
         $array      = [];
         foreach ($arrResult as $r) {
-            $r['str_manage'] = '<a href="' . url("NavMenu/add", ["parent_id" => $r['id'], "nav_id" => $intNavId]) . '">添加子菜单</a> | <a href="'
-                . url("NavMenu/edit", ["id" => $r['id'], "nav_id" => $intNavId]) . '">编辑</a> | <a class="js-ajax-delete" href="'
-                . url("NavMenu/delete", ["id" => $r['id'], "nav_id" => $intNavId]) . '">删除</a> ';
-            $r['status']     = $r['status'] ? "显示" : "隐藏";
+            $r['str_manage'] = '<a href="' . url("NavMenu/add", ["parent_id" => $r['id'], "nav_id" => $intNavId]) . '">'.lang('ADD_SUB_MENU').'</a> | <a href="'
+                . url("NavMenu/edit", ["id" => $r['id'], "nav_id" => $intNavId]) . '">'.lang('EDIT').'</a> | <a class="js-ajax-delete" href="'
+                . url("NavMenu/delete", ["id" => $r['id'], "nav_id" => $intNavId]) . '">'.lang('DELETE').'</a> ';
+            $r['status']     = $r['status'] ? lang('DISPLAY') : lang('HIDDEN');
             $r['selected']   = $r['id'] == $intParentId ? "selected" : "";
             $array[]         = $r;
         }
