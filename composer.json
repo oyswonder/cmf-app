@@ -1,5 +1,5 @@
 {
-    "name": "thinkcmf/cmf-app",
+    "name": "oyswonder/cmf-app",
     "description": "The ThinkCMF App Package",
     "license": "Apache-2.0",
     "authors": [
@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "thinkcmf/cmf": "~5.1.0"
+        "oyswonder/cmf": "~5.1.0"
     },
     "autoload": {
         "psr-4": {
