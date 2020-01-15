@@ -19,9 +19,12 @@ class LinkValidate extends Validate
         'url'  => 'require',
     ];
 
-    protected $message = [
-        'name.require' => '名称不能为空',
-        'url.require'  => '链接地址不能为空',
-    ];
-
+    public function __construct(array $rules = [], array $message = [], array $field = [])
+    {
+        parent::__construct($rules, $message, $field);
+        $this->message([
+            'name.require' => lang('LINK_NAME_CANNOT_BE_EMPTY'),
+            'url.require'  => lang('LINK_URL_CANNOT_BE_EMPTY'),
+        ]);
+    }
 }

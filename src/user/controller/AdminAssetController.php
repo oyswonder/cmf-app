@@ -72,9 +72,9 @@ class AdminAssetController extends AdminBaseController
         }
         if ($res) {
             Db::name('asset')->where('id', $id)->delete();
-            $this->success('删除成功');
+            $this->success(lang('DELETED_SUCCESSFULLY'));
         } else {
-            $this->error('删除失败');
+            $this->error(lang('DELETE_FAILED'));
         }
     }
 

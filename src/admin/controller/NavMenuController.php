@@ -39,7 +39,7 @@ class NavMenuController extends AdminBaseController
         $navMenuModel = new NavMenuModel();
 
         if (empty($intNavId)) {
-            $this->error("请指定导航!");
+            $this->error(lang('INVALID_REQUEST'));
         }
 
         $objResult = $navMenuModel->where("nav_id", $intNavId)->order(["list_order" => "ASC"])->select();
@@ -275,7 +275,7 @@ class NavMenuController extends AdminBaseController
 
         $count = $navMenuModel->where("parent_id", $intId)->count();
         if ($count > 0) {
-            $this->error("该菜单下还有子菜单，无法删除！");
+            $this->error(lang('SUBMENUS_UNDER_THIS_MENU_CANNOT_BE_DELETED'));
         }
 
         $navMenuModel->where("id", $intId)->delete();
@@ -301,9 +301,9 @@ class NavMenuController extends AdminBaseController
         $navMenuModel = new NavMenuModel();
         $status       = parent::listOrders($navMenuModel);
         if ($status) {
-            $this->success("排序更新成功！");
+            $this->success(lang('SORTING_UPDATE_SUCCEEDED'));
         } else {
-            $this->error("排序更新失败！");
+            $this->error(lang('SORTING_UPDATE_FAILED'));
         }
     }
 

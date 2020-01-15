@@ -82,7 +82,7 @@ class RouteController extends AdminBaseController
         }
         $routeModel->allowField(true)->save($data);
 
-        $this->success("添加成功！", url("Route/index", ['id' => $routeModel->id]));
+        $this->success(lang('ADDED_SUCCESSFULLY'), url("Route/index", ['id' => $routeModel->id]));
     }
 
     /**
@@ -129,7 +129,7 @@ class RouteController extends AdminBaseController
         }
         $routeModel->allowField(true)->isUpdate(true)->save($data);
 
-        $this->success("保存成功！", url("Route/index"));
+        $this->success(lang('SAVED_SUCCESSFULLY'), url("Route/index"));
     }
 
     /**
@@ -150,7 +150,7 @@ class RouteController extends AdminBaseController
         $id = $this->request->param('id', 0, 'intval');
         RouteModel::destroy($id);
 
-        $this->success("删除成功！");
+        $this->success(lang('DELETED_SUCCESSFULLY'));
     }
 
     /**
@@ -175,7 +175,7 @@ class RouteController extends AdminBaseController
         $routeModel     = new RouteModel();
 
         $routeModel->isUpdate(true)->save($data);
-        $this->success("禁用成功！");
+        $this->success(lang('DISABLED_SUCCESSFULLY'));
     }
 
     /**
@@ -200,7 +200,7 @@ class RouteController extends AdminBaseController
         $routeModel     = new RouteModel();
 
         $routeModel->isUpdate(true)->save($data);
-        $this->success("启用成功！");
+        $this->success(lang('ENABLED_SUCCESSFULLY'));
     }
 
     /**
@@ -220,7 +220,7 @@ class RouteController extends AdminBaseController
     {
         $routeModel = new RouteModel();
         parent::listOrders($routeModel);
-        $this->success("排序更新成功！");
+        $this->success(lang('SORTING_UPDATE_SUCCEEDED'));
     }
 
     /**

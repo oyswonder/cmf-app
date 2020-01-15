@@ -81,7 +81,7 @@ class RecycleBinController extends AdminBaseController
             if ($res) {
                 $re = Db::name('recycleBin')->where('id', $id)->delete();
                 if ($re) {
-                    $this->success("还原成功！");
+                    $this->success(lang('RESTORED_SUCCESSFULLY'));
                 }
             }
         }
@@ -125,7 +125,7 @@ class RecycleBinController extends AdminBaseController
                     Db::name('portal_tag_post')->where('post_id', $result['object_id'])->delete();
                 }
                 if ($res) {
-                    $this->success("删除成功！");
+                    $this->success(lang('DELETED_SUCCESSFULLY'));
                 }
 
             }

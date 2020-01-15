@@ -69,10 +69,10 @@ class AdminOauthController extends AdminBaseController
     {
         $id = input('param.id', 0, 'intval');
         if (empty($id)) {
-            $this->error('非法数据！');
+            $this->error(lang('PARAMETER_ERROR'));
         }
         Db::name("third_party_user")->where("id", $id)->delete();
-        $this->success("删除成功！", "admin_oauth/index");
+        $this->success(lang('DELETED_SUCCESSFULLY'), "admin_oauth/index");
     }
 
 

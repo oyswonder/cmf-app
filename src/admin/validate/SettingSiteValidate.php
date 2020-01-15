@@ -20,11 +20,15 @@ class SettingSiteValidate extends Validate
         'admin_settings.admin_password' => 'alphaNum|checkAlias'
     ];
 
-    protected $message = [
-        'options.site_name.require'                => '网站名称不能为空',
-        'admin_settings.admin_password.alphaNum'   => '后台加密码只能是英文字母和数字',
-        'admin_settings.admin_password.checkAlias' => '此加密码不能使用!',
-    ];
+    public function __construct(array $rules = [], array $message = [], array $field = [])
+    {
+        parent::__construct($rules, $message, $field);
+        $this->message([
+            'options.site_name.require'                => lang('SITE_NAME_CANNOT_BE_EMPTY'),
+            'admin_settings.admin_password.alphaNum'   => lang('ENCRYPTION_KEY_CAN_ONLY_BE_ENGLISH_LETTERS_AND_NUMBERS'),
+            'admin_settings.admin_password.checkAlias' => lang('ENCRYPTION_KEY_CANNOT_BE_USED'),
+        ]);
+    }
 
 
     // 自定义验证规则
@@ -35,7 +39,7 @@ class SettingSiteValidate extends Validate
         }
 
         if(preg_match('/^\d+$/',$value)){
-            return "加密码不能是纯数字！";
+            return lang('ENCRYPTION_KEY_CANNOT_PURE_NUMBER');
         }
 
         $routeModel = new RouteModel();
@@ -43,7 +47,7 @@ class SettingSiteValidate extends Validate
         if (!$routeModel->existsRoute($value.'$', $fullUrl)) {
             return true;
         } else {
-            return "URL规则已经存在,无法设置此加密码!";
+            return lang('URL_RULE_ALREADY_EXISTS');
         }
 
     }

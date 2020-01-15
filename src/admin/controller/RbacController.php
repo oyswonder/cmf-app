@@ -98,9 +98,9 @@ class RbacController extends AdminBaseController
             } else {
                 $result = Db::name('role')->insert($data);
                 if ($result) {
-                    $this->success("添加角色成功", url("rbac/index"));
+                    $this->success(lang('ADDED_SUCCESSFULLY'), url("rbac/index"));
                 } else {
-                    $this->error("添加角色失败");
+                    $this->error(lang('FAILED_TO_ADD_ROLE'));
                 }
 
             }
@@ -134,11 +134,11 @@ class RbacController extends AdminBaseController
 
         $id = $this->request->param("id", 0, 'intval');
         if ($id == 1) {
-            $this->error("超级管理员角色不能被修改！");
+            $this->error(lang('SUPER_ADMINISTRATOR_ROLE_CANNOT_BE_MODIFIED'));
         }
         $data = Db::name('role')->where("id", $id)->find();
         if (!$data) {
-            $this->error("该角色不存在！");
+            $this->error(lang('THE_ROLE_DOES_NOT_EXIST'));
         }
         $this->assign("data", $data);
         return $this->fetch();
@@ -163,7 +163,7 @@ class RbacController extends AdminBaseController
     {
         $id = $this->request->param("id", 0, 'intval');
         if ($id == 1) {
-            $this->error("超级管理员角色不能被修改！");
+            $this->error(lang('SUPER_ADMINISTRATOR_ROLE_CANNOT_BE_MODIFIED'));
         }
         if ($this->request->isPost()) {
             $data   = $this->request->param();
@@ -174,9 +174,9 @@ class RbacController extends AdminBaseController
 
             } else {
                 if (Db::name('role')->update($data) !== false) {
-                    $this->success("保存成功！", url('rbac/index'));
+                    $this->success(lang('SAVED_SUCCESSFULLY'), url('rbac/index'));
                 } else {
-                    $this->error("保存失败！");
+                    $this->error(lang('SAVE_FAILED'));
                 }
             }
         }
@@ -201,17 +201,17 @@ class RbacController extends AdminBaseController
     {
         $id = $this->request->param("id", 0, 'intval');
         if ($id == 1) {
-            $this->error("超级管理员角色不能被删除！");
+            $this->error(lang('SUPER_ADMINISTRATOR_ROLE_CANNOT_BE_DELETED'));
         }
         $count = Db::name('RoleUser')->where('role_id', $id)->count();
         if ($count > 0) {
-            $this->error("该角色已经有用户！");
+            $this->error(lang('THE_ROLE_ALREADY_HAS_USERS'));
         } else {
             $status = Db::name('role')->delete($id);
             if (!empty($status)) {
-                $this->success("删除成功！", url('rbac/index'));
+                $this->success(lang('DELETED_SUCCESSFULLY'), url('rbac/index'));
             } else {
-                $this->error("删除失败！");
+                $this->error(lang('DELETE_FAILED'));
             }
         }
     }
@@ -243,7 +243,7 @@ class RbacController extends AdminBaseController
         //角色ID
         $roleId = $this->request->param("id", 0, 'intval');
         if (empty($roleId)) {
-            $this->error("参数错误！");
+            $this->error(lang('PARAMETER_ERROR'));
         }
 
         $tree       = new Tree();
@@ -301,7 +301,7 @@ class RbacController extends AdminBaseController
         if ($this->request->isPost()) {
             $roleId = $this->request->param("roleId", 0, 'intval');
             if (!$roleId) {
-                $this->error("需要授权的角色不存在！");
+                $this->error(lang('PARAMETER_ERROR'));
             }
             if (is_array($this->request->param('menuId/a')) && count($this->request->param('menuId/a')) > 0) {
 
@@ -319,11 +319,11 @@ class RbacController extends AdminBaseController
 
                 Cache::clear('admin_menus');// 删除后台菜单缓存
 
-                $this->success("授权成功！");
+                $this->success(lang('AUTHORIZED_SUCCESSFULLY'));
             } else {
                 //当没有数据时，清除当前角色授权
                 Db::name("authAccess")->where("role_id", $roleId)->delete();
-                $this->error("没有接收到数据，执行清除授权成功！");
+                $this->error(lang('NO_DATA_WAS_RECEIVED_AND_THE_CLEAR_AUTHORIZATION_WAS_SUCCESSFUL'));
             }
         }
     }

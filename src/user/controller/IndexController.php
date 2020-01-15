@@ -25,7 +25,7 @@ class IndexController extends HomeBaseController
         $userModel = new UserModel();
         $user      = $userModel->where('id', $id)->find();
         if (empty($user)) {
-            $this->error("查无此人！");
+            $this->error(lang('NO_SUCH_USER'));
         }
         $this->assign($user->toArray());
         $this->assign('user',$user);
@@ -38,9 +38,9 @@ class IndexController extends HomeBaseController
     function isLogin()
     {
         if (cmf_is_user_login()) {
-            $this->success("用户已登录",null,['user'=>cmf_get_current_user()]);
+            $this->success(lang('USER_IS_LOGGED_IN'),null,['user'=>cmf_get_current_user()]);
         } else {
-            $this->error("此用户未登录!");
+            $this->error(lang('USER_IS_NOT_LOGGED_IN'));
         }
     }
 

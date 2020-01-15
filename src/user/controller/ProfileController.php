@@ -205,9 +205,9 @@ class ProfileController extends UserBaseController
                 $userId = cmf_get_current_user_id();
                 Db::name("user")->where("id", $userId)->update(["avatar" => $avatar]);
                 session('user.avatar', $avatar);
-                $this->success("头像更新成功！");
+                $this->success(lang('AVATAR_UPDATED_SUCCESSFULLY'));
             } else {
-                $this->error("头像保存失败！");
+                $this->error(lang('FAILED_TO_SAVE_THE_AVATAR'));
             }
 
         }
@@ -234,10 +234,10 @@ class ProfileController extends UserBaseController
                 'verification_code' => 'require',
             ]);
             $validate->message([
-                'username.require'          => '手机号不能为空',
-                'username.number'           => '手机号只能为数字',
-                'username.unique'           => '手机号已存在',
-                'verification_code.require' => '验证码不能为空',
+                'username.require'          => lang('MOBILE_REQUIRED'),
+                'username.number'           => lang('MOBILE_ONLY_BE_NUMERIC'),
+                'username.unique'           => lang('MOBILE_NUMBER_HAS_BEEN_REGISTERED'),
+                'verification_code.require' => lang('CAPTCHA_REQUIRED'),
             ]);
 
             $data = $this->request->post();
@@ -252,13 +252,13 @@ class ProfileController extends UserBaseController
             $log       = $userModel->bindingMobile($data);
             switch ($log) {
                 case 0:
-                    $this->success('手机号绑定成功');
+                    $this->success(lang('MOBILE_BINDING_SUCCEEDED'));
                     break;
                 default :
-                    $this->error('未受理的请求');
+                    $this->error(lang('UNACCEPTED_REQUEST'));
             }
         } else {
-            $this->error("请求错误");
+            $this->error(lang('REQUEST_ERROR'));
         }
     }
 
@@ -273,10 +273,10 @@ class ProfileController extends UserBaseController
                 'verification_code' => 'require',
             ]);
             $validate->message([
-                'username.require'          => '邮箱地址不能为空',
-                'username.email'            => '邮箱地址不正确',
-                'username.unique'           => '邮箱地址已存在',
-                'verification_code.require' => '验证码不能为空',
+                'username.require'          => lang('EMAIL_REQUIRED'),
+                'username.email'            => lang('EMAIL_ADDRESS_IS_INCORRECT'),
+                'username.unique'           => lang('EMAIL_ADDRESS_HAS_BEEN_REGISTERED'),
+                'verification_code.require' => lang('CAPTCHA_REQUIRED'),
             ]);
 
             $data = $this->request->post();
@@ -291,13 +291,13 @@ class ProfileController extends UserBaseController
             $log       = $userModel->bindingEmail($data);
             switch ($log) {
                 case 0:
-                    $this->success('邮箱绑定成功');
+                    $this->success(lang('EMAIL_BINDING_SUCCEEDED'));
                     break;
                 default :
-                    $this->error('未受理的请求');
+                    $this->error(lang('UNACCEPTED_REQUEST'));
             }
         } else {
-            $this->error("请求错误");
+            $this->error(lang('REQUEST_ERROR'));
         }
     }
 

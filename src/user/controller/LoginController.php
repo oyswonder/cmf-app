@@ -53,11 +53,11 @@ class LoginController extends HomeBaseController
                 'password' => 'require|min:6|max:32',
             ]);
             $validate->message([
-                'username.require' => '用户名不能为空',
-                'password.require' => '密码不能为空',
-                'password.max'     => '密码不能超过32个字符',
-                'password.min'     => '密码不能小于6个字符',
-                'captcha.require'  => '验证码不能为空',
+                'username.require' => lang('USERNAME_CANNOT_BE_EMPTY'),
+                'password.require' => lang('PASSWORD_REQUIRED'),
+                'password.max'     => lang('MAXIMUM_NUMBER_OF_PASSWORD_STRINGS'),
+                'password.min'     => lang('MINIMUM_NUMBER_OF_PASSWORD_STRINGS'),
+                'captcha.require'  => lang('CAPTCHA_REQUIRED'),
             ]);
 
             $data = $this->request->post();
@@ -92,16 +92,16 @@ class LoginController extends HomeBaseController
                     $this->error(lang('PASSWORD_NOT_RIGHT'));
                     break;
                 case 2:
-                    $this->error('账户不存在');
+                    $this->error(lang('ACCOUNT_DOES_NOT_EXIST'));
                     break;
                 case 3:
-                    $this->error('账号被禁止访问系统');
+                    $this->error(lang('ACCOUNT_IS_FORBIDDEN_TO_ACCESS_THE_SYSTEM'));
                     break;
                 default :
-                    $this->error('未受理的请求');
+                    $this->error(lang('UNACCEPTED_REQUEST'));
             }
         } else {
-            $this->error("请求错误");
+            $this->error(lang('REQUEST_ERROR'));
         }
     }
 
@@ -126,11 +126,11 @@ class LoginController extends HomeBaseController
                 'password'          => 'require|min:6|max:32',
             ]);
             $validate->message([
-                'verification_code.require' => '验证码不能为空',
-                'password.require'          => '密码不能为空',
-                'password.max'              => '密码不能超过32个字符',
-                'password.min'              => '密码不能小于6个字符',
-                'captcha.require'           => '验证码不能为空',
+                'verification_code.require' => lang('CAPTCHA_REQUIRED'),
+                'password.require'          => lang('PASSWORD_REQUIRED'),
+                'password.max'              => lang('MAXIMUM_NUMBER_OF_PASSWORD_STRINGS'),
+                'password.min'              => lang('MINIMUM_NUMBER_OF_PASSWORD_STRINGS'),
+                'captcha.require'           => lang('CAPTCHA_REQUIRED'),
             ]);
 
             $data = $this->request->post();
@@ -140,7 +140,7 @@ class LoginController extends HomeBaseController
 
             $captchaId = empty($data['_captcha_id']) ? '' : $data['_captcha_id'];
             if (!cmf_captcha_check($data['captcha'], $captchaId)) {
-                $this->error('验证码错误');
+                $this->error(lang('CAPTCHA_NOT_RIGHT'));
             }
 
             $errMsg = cmf_check_verification_code($data['username'], $data['verification_code']);
@@ -161,20 +161,20 @@ class LoginController extends HomeBaseController
             }
             switch ($log) {
                 case 0:
-                    $this->success('密码重置成功', cmf_url('user/Profile/center'));
+                    $this->success(lang('PASSWORD_RESET_SUCCEEDED'), cmf_url('user/Profile/center'));
                     break;
                 case 1:
-                    $this->error("您的账户尚未注册");
+                    $this->error(lang('THE_ACCOUNT_HAS_NOT_BEEN_REGISTERED'));
                     break;
                 case 2:
-                    $this->error("您输入的账号格式错误");
+                    $this->error(lang('THE_ACCOUNT_YOU_ENTERED_IS_NOT_IN_THE_CORRECT_FORMAT'));
                     break;
                 default :
-                    $this->error('未受理的请求');
+                    $this->error(lang('UNACCEPTED_REQUEST'));
             }
 
         } else {
-            $this->error("请求错误");
+            $this->error(lang('REQUEST_ERROR'));
         }
     }
 

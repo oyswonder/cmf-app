@@ -189,7 +189,7 @@ class MenuController extends AdminBaseController
                 $to                    = empty($sessionAdminMenuIndex) ? "Menu/index" : $sessionAdminMenuIndex;
                 $this->_exportAppMenuDefaultLang();
                 Cache::clear('admin_menus');// 删除后台菜单缓存
-                $this->success("添加成功！", url($to));
+                $this->success(lang('ADDED_SUCCESSFULLY'), url($to));
             }
         }
     }
@@ -303,7 +303,7 @@ class MenuController extends AdminBaseController
                 }
                 $this->_exportAppMenuDefaultLang();
                 Cache::clear('admin_menus');// 删除后台菜单缓存
-                $this->success("保存成功！");
+                $this->success(lang('SAVED_SUCCESSFULLY'));
             }
         }
     }
@@ -328,12 +328,12 @@ class MenuController extends AdminBaseController
         $id    = $this->request->param("id", 0, 'intval');
         $count = Db::name('AdminMenu')->where("parent_id", $id)->count();
         if ($count > 0) {
-            $this->error("该菜单下还有子菜单，无法删除！");
+            $this->error(lang('SUBMENUS_UNDER_THIS_MENU_CANNOT_BE_DELETED'));
         }
         if (Db::name('AdminMenu')->delete($id) !== false) {
-            $this->success("删除菜单成功！");
+            $this->success(lang('DELETED_SUCCESSFULLY'));
         } else {
-            $this->error("删除失败！");
+            $this->error(lang('DELETE_FAILED'));
         }
     }
 
@@ -354,7 +354,7 @@ class MenuController extends AdminBaseController
     {
         $adminMenuModel = new AdminMenuModel();
         parent::listOrders($adminMenuModel);
-        $this->success("排序更新成功！");
+        $this->success(lang('SORTING_UPDATE_SUCCEEDED'));
     }
 
     /**
@@ -391,7 +391,7 @@ class MenuController extends AdminBaseController
         }
 
         if (!in_array($app, $apps)) {
-            $this->error('应用' . $app . '不存在!');
+            $this->error(lang('APP').' ' . $app .' '. lang('DOES_NOT_EXIST'));
         }
 
         $newMenus  = MenuLogic::importMenus($app);

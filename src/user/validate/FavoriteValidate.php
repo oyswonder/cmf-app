@@ -20,16 +20,20 @@ class FavoriteValidate extends Validate
         'table' => 'require',
         'url'   => 'require|checkUrl',
     ];
-    protected $message = [
-        'id.require'    => '收藏内容ID不能为空!',
-        'title.require' => '收藏内容标题不能为空!',
-        'table.require' => '收藏内容所在表不能为空!',
-        'url.require'   => '收藏内容链接不能为空!',
-        'url.checkUrl'  => '收藏内容链接格式不正确!'
-    ];
 
-    protected $scene = [
-    ];
+    protected $scene = [];
+
+    public function __construct(array $rules = [], array $message = [], array $field = [])
+    {
+        parent::__construct($rules, $message, $field);
+        $this->message([
+            'id.require'    => lang('FAVORITE_ID_CANNOT_BE_EMPTY'),
+            'title.require' => lang('FAVORITE_TITLE_CANNOT_BE_EMPTY'),
+            'table.require' => lang('FAVORITE_TABLE_CANNOT_BE_EMPTY'),
+            'url.require'   => lang('FAVORITE_LINK_CANNOT_BE_EMPTY'),
+            'url.checkUrl'  => lang('INCORRECT_LINK_FORMAT')
+        ]);
+    }
 
     // 验证url 格式
     protected function checkUrl($value, $rule, $data)
@@ -39,7 +43,7 @@ class FavoriteValidate extends Validate
         if (!empty($url['action'])) {
             return true;
         }
-        return '收藏内容链接格式不正确!';
+        return lang('INCORRECT_LINK_FORMAT');
     }
 
     // 验证url 格式
@@ -48,6 +52,6 @@ class FavoriteValidate extends Validate
         if (base64_decode($value)!==false) {
             return true;
         }
-        return '收藏内容标题格式不正确!';
+        return lang('INCORRECT_TITLE_FORMAT');
     }
 }

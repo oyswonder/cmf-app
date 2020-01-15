@@ -53,7 +53,7 @@ class UeditorController extends HomeBaseController
         $adminId = cmf_get_current_admin_id();
         $userId  = cmf_get_current_user_id();
         if (empty($adminId) && empty($userId)) {
-            $this->error("非法上传！");
+            $this->error(lang('ILLEGAL_UPLOADING'));
         }
     }
 

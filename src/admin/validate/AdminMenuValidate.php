@@ -23,20 +23,25 @@ class AdminMenuValidate extends Validate
         'action'     => 'require|unique:AdminMenu,app^controller^action',
     ];
 
-    protected $message = [
-        'name.require'       => '名称不能为空',
-        'app.require'        => '应用不能为空',
-        'parent_id'          => '超过了4级',
-        'controller.require' => '名称不能为空',
-        'action.require'     => '名称不能为空',
-        'action.unique'      => '同样的记录已经存在!',
-    ];
-
     protected $scene = [
         'add'  => ['name', 'app', 'controller', 'action', 'parent_id'],
         'edit' => ['name', 'app', 'controller', 'action', 'id', 'parent_id'],
 
     ];
+
+
+    public function __construct(array $rules = [], array $message = [], array $field = [])
+    {
+        parent::__construct($rules, $message, $field);
+        $this->message([
+            'name.require'       => lang('MENU_NAME_CANNOT_BE_EMPTY'),
+            'app.require'        => lang('APPLICATION_CANNOT_BE_EMPTY'),
+            'parent_id'          => lang('MENU_OVER_LEVEL'),
+            'controller.require' => lang('CONTROLLER_CANNOT_BE_EMPTY'),
+            'action.require'     => lang('ACTION_CANNOT_BE_EMPTY'),
+            'action.unique'      => lang('SAME_ITEM_ALREADY_EXISTS'),
+        ]);
+    }
 
     // 自定义验证规则
     protected function checkParentId($value)

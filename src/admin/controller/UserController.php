@@ -140,17 +140,17 @@ class UserController extends AdminBaseController
                         //$role_user_model=M("RoleUser");
                         foreach ($role_ids as $role_id) {
                             if (cmf_get_current_admin_id() != 1 && $role_id == 1) {
-                                $this->error("为了网站的安全，非网站创建者不可创建超级管理员！");
+                                $this->error(lang('NON_SITE_CREATORS_CANNOT_CREATE_SUPER_ADMINISTRATORS'));
                             }
                             Db::name('RoleUser')->insert(["role_id" => $role_id, "user_id" => $result]);
                         }
-                        $this->success("添加成功！", url("user/index"));
+                        $this->success(lang('ADDED_SUCCESSFULLY'), url("user/index"));
                     } else {
-                        $this->error("添加失败！");
+                        $this->error(lang('ADD_FAILED'));
                     }
                 }
             } else {
-                $this->error("请为此用户指定角色！");
+                $this->error(lang('PLEASE_ASSIGN_A_ROLE_TO_THIS_USER'));
             }
 
         }
@@ -224,17 +224,17 @@ class UserController extends AdminBaseController
                         DB::name("RoleUser")->where("user_id", $uid)->delete();
                         foreach ($role_ids as $role_id) {
                             if (cmf_get_current_admin_id() != 1 && $role_id == 1) {
-                                $this->error("为了网站的安全，非网站创建者不可创建超级管理员！");
+                                $this->error(lang('NON_SITE_CREATORS_CANNOT_CREATE_SUPER_ADMINISTRATORS'));
                             }
                             DB::name("RoleUser")->insert(["role_id" => $role_id, "user_id" => $uid]);
                         }
-                        $this->success("保存成功！");
+                        $this->success(lang('SAVED_SUCCESSFULLY'));
                     } else {
-                        $this->error("保存失败！");
+                        $this->error(lang('SAVE_FAILED'));
                     }
                 }
             } else {
-                $this->error("请为此用户指定角色！");
+                $this->error(lang('PLEASE_ASSIGN_A_ROLE_TO_THIS_USER'));
             }
 
         }
@@ -283,9 +283,9 @@ class UserController extends AdminBaseController
             $data['id']       = cmf_get_current_admin_id();
             $create_result    = Db::name('user')->update($data);;
             if ($create_result !== false) {
-                $this->success("保存成功！");
+                $this->success(lang('SAVED_SUCCESSFULLY'));
             } else {
-                $this->error("保存失败！");
+                $this->error(lang('SAVE_FAILED'));
             }
         }
     }
@@ -307,14 +307,14 @@ class UserController extends AdminBaseController
     {
         $id = $this->request->param('id', 0, 'intval');
         if ($id == 1) {
-            $this->error("最高管理员不能删除！");
+            $this->error(lang('TOP_ADMINISTRATOR_CANNOT_DELETE'));
         }
 
         if (Db::name('user')->delete($id) !== false) {
             Db::name("RoleUser")->where("user_id", $id)->delete();
-            $this->success("删除成功！");
+            $this->success(lang('DELETED_SUCCESSFULLY'));
         } else {
-            $this->error("删除失败！");
+            $this->error(lang('DELETE_FAILED'));
         }
     }
 
@@ -337,12 +337,12 @@ class UserController extends AdminBaseController
         if (!empty($id)) {
             $result = Db::name('user')->where(["id" => $id, "user_type" => 1])->setField('user_status', '0');
             if ($result !== false) {
-                $this->success("管理员停用成功！", url("user/index"));
+                $this->success(lang('DISABLED_SUCCESSFULLY'), url("user/index"));
             } else {
-                $this->error('管理员停用失败！');
+                $this->error(lang('DISABLE_FAILED'));
             }
         } else {
-            $this->error('数据传入失败！');
+            $this->error(lang('PARAMETER_ERROR'));
         }
     }
 
@@ -365,12 +365,12 @@ class UserController extends AdminBaseController
         if (!empty($id)) {
             $result = Db::name('user')->where(["id" => $id, "user_type" => 1])->setField('user_status', '1');
             if ($result !== false) {
-                $this->success("管理员启用成功！", url("user/index"));
+                $this->success(lang('ENABLED_SUCCESSFULLY'), url("user/index"));
             } else {
-                $this->error('管理员启用失败！');
+                $this->error(lang('ENABLE_FAILED'));
             }
         } else {
-            $this->error('数据传入失败！');
+            $this->error(lang('PARAMETER_ERROR'));
         }
     }
 }

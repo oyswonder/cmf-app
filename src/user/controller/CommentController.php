@@ -42,9 +42,9 @@ class CommentController extends UserBaseController
         $delete = new UserModel();
         $data = $delete->deleteComment($id);
         if ($data) {
-            $this->success("删除成功！");
+            $this->success(lang('DELETED_SUCCESSFULLY'));
         } else {
-            $this->error("删除失败！");
+            $this->error(lang('DELETE_FAILED'));
         }
     }
 }

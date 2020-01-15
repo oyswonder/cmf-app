@@ -40,9 +40,9 @@ class FavoriteController extends UserBaseController
         $userFavoriteModel = new UserFavoriteModel();
         $data              = $userFavoriteModel->deleteFavorite($id);
         if ($data) {
-            $this->success("取消收藏成功！");
+            $this->success(lang('REMOVED_TO_FAVORITE_SUCCESSFULLY'));
         } else {
-            $this->error("取消收藏失败！");
+            $this->error(lang('FAILED_TO_REMOVE_FROM_FAVORITE'));
         }
     }
 
@@ -69,7 +69,7 @@ class FavoriteController extends UserBaseController
         ])->count();
 
         if ($findFavoriteCount > 0) {
-            $this->error("您已收藏过啦");
+            $this->error(lang('ALREADY_IN_YOUR_FAVORITE'));
         }
 
 
@@ -88,7 +88,7 @@ class FavoriteController extends UserBaseController
             'create_time' => time()
         ]);
 
-        $this->success('收藏成功');
+        $this->success(lang('ADDED_TO_FAVORITE_SUCCESSFULLY'));
 
     }
 }

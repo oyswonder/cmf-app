@@ -58,11 +58,11 @@ class RegisterController extends HomeBaseController
 
             $validate = new \think\Validate($rules);
             $validate->message([
-                'code.require'     => '验证码不能为空',
-                'password.require' => '密码不能为空',
-                'password.max'     => '密码不能超过32个字符',
-                'password.min'     => '密码不能小于6个字符',
-                'captcha.require'  => '验证码不能为空',
+                'code.require'     => lang('CAPTCHA_NOT_RIGHT'),
+                'password.require' => lang('PASSWORD_REQUIRED'),
+                'password.max'     => lang('MAXIMUM_NUMBER_OF_PASSWORD_STRINGS'),
+                'password.min'     => lang('MINIMUM_NUMBER_OF_PASSWORD_STRINGS'),
+                'captcha.require'  => lang('CAPTCHA_NOT_RIGHT'),
             ]);
 
             $data = $this->request->post();
@@ -72,7 +72,7 @@ class RegisterController extends HomeBaseController
 
             $captchaId = empty($data['_captcha_id']) ? '' : $data['_captcha_id'];
             if (!cmf_captcha_check($data['captcha'], $captchaId)) {
-                $this->error('验证码错误');
+                $this->error(lang('CAPTCHA_NOT_RIGHT'));
             }
 
             if (!$isOpenRegistration) {
@@ -97,20 +97,20 @@ class RegisterController extends HomeBaseController
             $redirect                = empty($sessionLoginHttpReferer) ? cmf_get_root() . '/' : $sessionLoginHttpReferer;
             switch ($log) {
                 case 0:
-                    $this->success('注册成功', $redirect);
+                    $this->success(lang('REGISTERED_SUCCESSFULLY'), $redirect);
                     break;
                 case 1:
-                    $this->error("您的账户已注册过");
+                    $this->error(lang('THIS_ACCOUNT_HAS_BEEN_REGISTERED'));
                     break;
                 case 2:
-                    $this->error("您输入的账号格式错误");
+                    $this->error(lang('THE_ACCOUNT_YOU_ENTERED_IS_NOT_IN_THE_CORRECT_FORMAT'));
                     break;
                 default :
-                    $this->error('未受理的请求');
+                    $this->error(lang('UNACCEPTED_REQUEST'));
             }
 
         } else {
-            $this->error("请求错误");
+            $this->error(lang('REQUEST_ERROR'));
         }
 
     }

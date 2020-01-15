@@ -107,7 +107,7 @@ class AdminUserActionController extends AdminBaseController
             ->field('score,coin,reward_number,cycle_type,cycle_time')
             ->update($data);
 
-        $this->success('保存成功！');
+        $this->success(lang('SAVED_SUCCESSFULLY'));
     }
 
     /**

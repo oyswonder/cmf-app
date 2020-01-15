@@ -18,12 +18,16 @@ class SlideValidate extends Validate
         'name' => 'require',
     ];
 
-    protected $message = [
-        'name.require' => '分类名称必须',
-    ];
-
     protected $scene = [
         'add'  => ['name'],
         'edit' => ['name'],
     ];
+
+    public function __construct(array $rules = [], array $message = [], array $field = [])
+    {
+        parent::__construct($rules, $message, $field);
+        $this->message([
+            'name.require' => lang('SLIDE_NAME_CANNOT_BE_EMPTY'),
+        ]);
+    }
 }

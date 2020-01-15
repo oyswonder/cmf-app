@@ -138,13 +138,13 @@ class SettingController extends AdminBaseController
                 ]);
 
                 if ($result === false) {
-                    $this->error('配置写入失败!');
+                    $this->error(lang('CONFIGURATION_WRITE_FAILED'));
                 }
             }
 
             cmf_set_option('admin_settings', $adminSettings);
 
-            $this->success("保存成功！", '');
+            $this->success(lang('SAVED_SUCCESSFULLY'), '');
 
         }
     }
@@ -186,10 +186,10 @@ class SettingController extends AdminBaseController
 
             $data = $this->request->param();
             if (empty($data['old_password'])) {
-                $this->error("原始密码不能为空！");
+                $this->error(lang('OLD_PASSWORD_CANNOT_BE_EMPTY'));
             }
             if (empty($data['password'])) {
-                $this->error("新密码不能为空！");
+                $this->error(lang('NEW_PASSWORD_CANNOT_BE_EMPTY'));
             }
 
             $userId = cmf_get_current_admin_id();
@@ -204,17 +204,17 @@ class SettingController extends AdminBaseController
                 if ($password == $rePassword) {
 
                     if (cmf_compare_password($password, $admin['user_pass'])) {
-                        $this->error("新密码不能和原始密码相同！");
+                        $this->error(lang('THE_NEW_PASSWORD_CANNOT_BE_THE_SAME_AS_THE_OLD_PASSWORD'));
                     } else {
                         Db::name('user')->where('id', $userId)->update(['user_pass' => cmf_password($password)]);
-                        $this->success("密码修改成功！");
+                        $this->success(lang('PASSWORD_CHANGED_SUCCESSFULLY'));
                     }
                 } else {
-                    $this->error("密码输入不一致！");
+                    $this->error(lang('THE_NEW_PASSWORD_CANNOT_BE_THE_SAME_AS_THE_OLD_PASSWORD'));
                 }
 
             } else {
-                $this->error("原始密码不正确！");
+                $this->error(lang('THE_OLD_PASSWORD_IS_INCORRECT'));
             }
         }
     }
@@ -259,7 +259,7 @@ class SettingController extends AdminBaseController
             $uploadSetting = $this->request->post();
 
             cmf_set_option('upload_setting', $uploadSetting);
-            $this->success('保存成功！');
+            $this->success(lang('SAVED_SUCCESSFULLY'));
         }
 
     }

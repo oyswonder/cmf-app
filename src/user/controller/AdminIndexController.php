@@ -105,12 +105,12 @@ class AdminIndexController extends AdminBaseController
         if ($id) {
             $result = Db::name("user")->where(["id" => $id, "user_type" => 2])->setField('user_status', 0);
             if ($result) {
-                $this->success("会员拉黑成功！", "adminIndex/index");
+                $this->success(lang('BLOCKED_SUCCESSFULLY'), "adminIndex/index");
             } else {
-                $this->error('会员拉黑失败,会员不存在,或者是管理员！');
+                $this->error(lang('MEMBER_BLOCK_FAILED_MEMBER_DOES_NOT_EXIST_OR_ADMINISTRATOR'));
             }
         } else {
-            $this->error('数据传入失败！');
+            $this->error(lang('PARAMETER_ERROR'));
         }
     }
 
@@ -132,9 +132,9 @@ class AdminIndexController extends AdminBaseController
         $id = input('param.id', 0, 'intval');
         if ($id) {
             Db::name("user")->where(["id" => $id, "user_type" => 2])->setField('user_status', 1);
-            $this->success("会员启用成功！", '');
+            $this->success(lang('ENABLED_SUCCESSFULLY'), '');
         } else {
-            $this->error('数据传入失败！');
+            $this->error(lang('PARAMETER_ERROR'));
         }
     }
 }

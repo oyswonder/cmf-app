@@ -18,11 +18,15 @@ class RoleValidate extends Validate
         'name' => 'require',
     ];
 
-    protected $message = [
-        'name.require' => '角色名称不能为空',
-    ];
-
     protected $scene = [
         'add' => ['name'],
     ];
+
+    public function __construct(array $rules = [], array $message = [], array $field = [])
+    {
+        parent::__construct($rules, $message, $field);
+        $this->message([
+            'name.require' => lang('ROLE_NAME_CANNOT_BE_EMPTY'),
+        ]);
+    }
 }

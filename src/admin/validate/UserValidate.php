@@ -19,17 +19,22 @@ class UserValidate extends Validate
         'user_pass'  => 'require',
         'user_email' => 'require|email|unique:user,user_email',
     ];
-    protected $message = [
-        'user_login.require' => '用户不能为空',
-        'user_login.unique'  => '用户名已存在',
-        'user_pass.require'  => '密码不能为空',
-        'user_email.require' => '邮箱不能为空',
-        'user_email.email'   => '邮箱不正确',
-        'user_email.unique'  => '邮箱已经存在',
-    ];
 
     protected $scene = [
         'add'  => ['user_login', 'user_pass', 'user_email'],
         'edit' => ['user_login', 'user_email'],
     ];
+
+    public function __construct(array $rules = [], array $message = [], array $field = [])
+    {
+        parent::__construct($rules, $message, $field);
+        $this->message([
+            'user_login.require' => lang('USERNAME_CANNOT_BE_EMPTY'),
+            'user_login.unique'  => lang('USERNAME_IS_ALREADY_REGISTERED'),
+            'user_pass.require'  => lang('PASSWORD_CANNOT_BE_EMPTY'),
+            'user_email.require' => lang('EMAIL_REQUIRED'),
+            'user_email.email'   => lang('EMAIL_ADDRESS_IS_INCORRECT'),
+            'user_email.unique'  => lang('EMAIL_ADDRESS_HAS_BEEN_REGISTERED'),
+        ]);
+    }
 }

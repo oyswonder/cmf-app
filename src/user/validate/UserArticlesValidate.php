@@ -17,12 +17,17 @@ class UserArticlesValidate extends Validate
     protected $rule = [
         'post_title' => 'require',
     ];
-    protected $message = [
-        'post_title.require' => '文章标题不能为空',
-    ];
 
     protected $scene = [
         'add'  => ['post_title'],
         'edit' => ['post_title'],
     ];
+
+    public function __construct(array $rules = [], array $message = [], array $field = [])
+    {
+        parent::__construct($rules, $message, $field);
+        $this->message([
+            'post_title.require' => lang('ARTICLE_TITLE_CANNOT_BE_EMPTY'),
+        ]);
+    }
 }

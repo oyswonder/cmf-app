@@ -19,17 +19,21 @@ class RouteValidate extends Validate
         'full_url' => 'require|checkFullUrl',
     ];
 
-    protected $message = [
-        'url.require'      => '显示网址不能为空',
-        'full_url.require' => '原始网址不能为空',
-    ];
+    public function __construct(array $rules = [], array $message = [], array $field = [])
+    {
+        parent::__construct($rules, $message, $field);
+        $this->message([
+            'url.require'      => lang('DISPLAY_URL_CANNOT_BE_EMPTY'),
+            'full_url.require' => lang('ORIGINAL_URL_CANNOT_BE_EMPTY'),
+        ]);
+    }
 
     // 自定义验证规则
     protected function checkUrl($value, $rule, $data)
     {
         $value = htmlspecialchars_decode($value);
         if (preg_match("/[()'\";]/", $value)) {
-            return "显示网址格式不正确!";
+            return lang('DISPLAY_URL_FORMAT_IS_INCORRECT');
         }
 
         return true;
@@ -40,7 +44,7 @@ class RouteValidate extends Validate
     {
         $value = htmlspecialchars_decode($value);
         if (preg_match("/[()'\";]/", $value)) {
-            return "原始网址格式不正确!";
+            return lang('ORIGINAL_URL_FORMAT_IS_INCORRECT');
         }
 
         return true;

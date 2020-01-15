@@ -20,10 +20,14 @@ class StorageQiniuValidate extends Validate
         'domain'    => 'require',
     ];
 
-    protected $message = [
-        'accessKey.require' => 'AccessKey不能为空',
-        'secretKey.require' => 'secretKey不能为空',
-        'domain.require' => '空间域名不能为空',
-    ];
+    public function __construct(array $rules = [], array $message = [], array $field = [])
+    {
+        parent::__construct($rules, $message, $field);
+        $this->message([
+            'accessKey.require' => 'AccessKey '.lang('CANNOT_BE_EMPTY'),
+            'secretKey.require' => 'secretKey '.lang('CANNOT_BE_EMPTY'),
+            'domain.require' => lang('DOMAIN_CANNOT_BE_EMPTY'),
+        ]);
+    }
 
 }
