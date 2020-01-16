@@ -1,0 +1,65 @@
+<?php
+// +----------------------------------------------------------------------
+// | ThinkCMF [ WE CAN DO IT MORE SIMPLE ]
+// +----------------------------------------------------------------------
+// | Copyright (c) 2013-2019 http://www.thinkcmf.com All rights reserved.
+// +----------------------------------------------------------------------
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// +----------------------------------------------------------------------
+// | Author: 老貓 <thinkcmf@126.com>
+// +----------------------------------------------------------------------
+return [
+    'SORTING_UPDATE_SUCCEEDED' => '排序更新成功！',
+    'SORTING_UPDATE_FAILED' => '排序更新失敗！',
+    'ADDED_SUCCESSFULLY' => '添加成功！',
+    'ADD_FAILED' => '添加失敗！',
+    'SAVED_SUCCESSFULLY' => '保存成功！',
+    'SAVE_FAILED' => '保存失敗！',
+    'DELETED_SUCCESSFULLY' => '刪除成功！',
+    'UPDATED_SUCCESSFULLY' => '更新成功！',
+    'OPERATION_FAILED' => '操作失敗！',
+    'DISABLED_SUCCESSFULLY' => '禁用成功！',
+    'DISABLE_FAILED' => '禁用失敗！',
+    'BLOCKED_SUCCESSFULLY' => '拉黑成功！',
+    'ENABLED_SUCCESSFULLY' => '啟用成功！',
+    'ENABLE_FAILED' => '啟用失敗！',
+    'UPLOADED_SUCCESSFULLY' => '上傳成功！',
+    'INSTALLED_SUCCESSFULLY' => '安裝成功！',
+    'UNINSTALLED_SUCCESSFULLY' => '卸載成功！',
+    'UNINSTALL_FAILED' => '卸載失敗！',
+    'ADDED_TO_FAVORITE_SUCCESSFULLY' => '收藏成功！',
+    'REMOVED_TO_FAVORITE_SUCCESSFULLY' => '取消收藏成功！',
+    'FAILED_TO_REMOVE_FROM_FAVORITE' => '取消收藏失敗！',
+    'ALREADY_IN_YOUR_FAVORITE' => '您已收藏過啦！',
+    'PASSWORD_RESET_SUCCEEDED' => '密碼重置成功！',
+    'AVATAR_UPDATED_SUCCESSFULLY' => '相片更新成功！',
+    'FAILED_TO_SAVE_THE_AVATAR' => '相片保存失敗！',
+    'MOBILE_BINDING_SUCCEEDED' => '手機號綁定成功',
+    'EMAIL_BINDING_SUCCEEDED' => '電郵綁定成功',
+    'REGISTERED_SUCCESSFULLY' => '註冊成功',
+    'VERIFICATION_CODE_HAS_BEEN_SENT_SUCCESSFULLY' => '驗證碼已經發送成功',
+    'PARAMETER_ERROR' => '參數錯誤！',
+    'REQUEST_SUCCESSFUL' => '請求成功！',
+    'REQUEST_ERROR' => '請求錯誤！',
+    'ACCOUNT_DOES_NOT_EXIST' => '賬戶不存在！',
+    'ACCOUNT_IS_FORBIDDEN_TO_ACCESS_THE_SYSTEM' => '賬戶被禁止訪問系統！',
+    'UNACCEPTED_REQUEST' => '未受理的請求！',
+    'THE_ACCOUNT_HAS_NOT_BEEN_REGISTERED' => '該賬戶尚未註冊！',
+    'THE_ACCOUNT_YOU_ENTERED_IS_NOT_IN_THE_CORRECT_FORMAT' => '您輸入的賬戶格式錯誤！',
+    'THIS_ACCOUNT_HAS_BEEN_REGISTERED' => '該賬戶已被註冊！',
+    'ILLEGAL_LOGIN' => '非法登錄！',
+    'USER_IS_LOGGED_IN' => '用戶已登錄',
+    'EMAIL_IS_REQUIRED' => '收件箱不能為空！',
+    'EMAIL_IS_INCORRECT' => '收件箱格式不正確！',
+    'SUBJECT_IS_REQUIRED' => '標題不能為空！',
+    'SENT_SUCCESSFULLY' => '發送成功！',
+    'FAILED_TO_SEND' => '發送失敗！',
+    'AUTHORIZED_SUCCESSFULLY' => '授權成功！',
+    'RESTORED_SUCCESSFULLY' => '還原成功！',
+    'PASSWORD_CHANGED_SUCCESSFULLY' => '密碼修改成功！',
+    'INVALID_REQUEST' => '無效請求！',
+    'CANNOT_BE_EMPTY' => '不能為空！',
+    'USERNAME_CANNOT_BE_EMPTY' => '用戶名不能為空！',
+    'PASSWORD_CANNOT_BE_EMPTY' => '密碼不能為空！',
+    '' => '',
+];
