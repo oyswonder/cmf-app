@@ -226,7 +226,7 @@ return [
     'ADD_URL_RULE'                       => '添加URL规则',
     'EDIT_URL_RULE'                      => '编辑URL规则',
     'ORIGINAL_URL'                       => '原始网址',
-    'DISPLAY_URL'                        => '原始网址',
+    'DISPLAY_URL'                        => '显示网址',
     'CUSTOMIZED'                         => '自定义',
     'ALIAS_DEFINITION'                   => '别名定义',
     'SELECT_RULE'                        => '选择规则',

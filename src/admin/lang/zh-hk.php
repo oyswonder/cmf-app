@@ -226,7 +226,7 @@ return [
     'ADD_URL_RULE'                       => '添加URL規則',
     'EDIT_URL_RULE'                      => '編輯URL規則',
     'ORIGINAL_URL'                       => '原始網址',
-    'DISPLAY_URL'                        => '原始網址',
+    'DISPLAY_URL'                        => '顯示網址',
     'CUSTOMIZED'                         => '自定義',
     'ALIAS_DEFINITION'                   => '別名定義',
     'SELECT_RULE'                        => '選擇規則',
