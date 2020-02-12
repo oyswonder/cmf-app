@@ -309,7 +309,7 @@ return [
     'PLUGIN_MANAGE'                      => '插件管理',
     'HOOK_SYNCHRONIZATION_SUCCEEDED'     => '鉤子同步成功!',
     //後台菜單管理
-    'SEARCH'                             => '尋找',
+    'SEARCH'                             => '搜尋',
     'CLEAR'                              => '清除',
     'ADMIN_MENU'                         => '後台菜單',
     'ADD_MENU'                           => '添加菜單',
