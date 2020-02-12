@@ -9,7 +9,7 @@
 // | Author: 老猫 <thinkcmf@126.com>
 // +----------------------------------------------------------------------
 return [
-    'USER_INDEXADMIN_BAN'       => '拉黑会员',
+    'USER_INDEXADMIN_BAN'       => '禁止会员',
     'USER_INDEXADMIN_CANCELBAN' => '启用会员',
     'USER_INDEXADMIN_DEFAULT1'  => 'User Group',
     'USER_INDEXADMIN_DEFAULT3'  => 'Admin Group',
